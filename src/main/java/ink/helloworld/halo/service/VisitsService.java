@@ -24,7 +24,7 @@ public interface VisitsService extends CrudService<Visits, Long> {
      * @param visitBrowser visitBrowser
      * @param url    url
      */
-    void save(String visitIp, String visitBrowser,String url);
+    void save(String visitIp, String visitBrowser,String visitOs,String url,String visitUserAgent);
 
     /**
      * 查询最新的五条记录

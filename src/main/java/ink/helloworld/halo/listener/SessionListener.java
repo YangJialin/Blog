@@ -1,5 +1,8 @@
 package ink.helloworld.halo.listener;
 
+import cn.hutool.http.useragent.UserAgent;
+import cn.hutool.http.useragent.UserAgentInfo;
+import cn.hutool.http.useragent.UserAgentUtil;
 import ink.helloworld.halo.logging.Logger;
 import ink.helloworld.halo.service.VisitsService;
 import ink.helloworld.halo.utils.SessionUtil;
@@ -60,7 +63,11 @@ public class SessionListener implements HttpSessionListener, HttpSessionAttribut
         ServletRequestAttributes sra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = sra.getRequest();
         VisitsService visitsService = SpringUtil.getBean(VisitsService.class);
-        visitsService.save( request.getRemoteAddr(),request.getHeader("User-Agent"),request.getRequestURI());
+        UserAgent userAgent = UserAgentUtil.parse(request.getHeader("User-Agent"));
+
+        String browser = userAgent.getBrowser().getName() + " " + userAgent.getVersion();
+        String os = userAgent.getOs().getPattern().toString();
+        visitsService.save(request.getRemoteAddr(), browser, os, request.getRequestURI(), request.getHeader("User-Agent"));
     }
 
     @Override

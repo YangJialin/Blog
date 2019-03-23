@@ -39,9 +39,11 @@ public class VisitsServiceImpl extends AbstractCrudService<Visits, Long> impleme
      * @param visitUserAgent visitUserAgent
      */
     @Override
-    public void save(String visitIp, String visitUserAgent,String url) {
+    public void save(String visitIp, String visitBrowser,String visitOs,String url,String visitUserAgent) {
         final Visits visits = new Visits();
         visits.setVisitIp(visitIp);
+        visits.setVisitBrowser(visitBrowser);
+        visits.setVisitOs(visitOs);
         visits.setUrl(url);
         visits.setVisitUserAgent(visitUserAgent);
         visitsRepository.save(visits);

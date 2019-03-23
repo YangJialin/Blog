@@ -245,6 +245,19 @@ public class AdminController extends BaseController {
     }
 
     /**
+     * 查看所有访问记录
+     *
+     * @param model model model
+     * @return 模板路径admin/widget/_visits-all
+     */
+    @GetMapping(value = "/visits")
+    public String visits(Model model, @PageableDefault Pageable pageable) {
+        final Page<Visits> visits = visitsService.listAll(pageable);
+        model.addAttribute("visits", visits);
+        return "admin/widget/_visits-all";
+    }
+
+    /**
      * 清除所有日志
      *
      * @return 重定向到/admin
@@ -255,6 +268,21 @@ public class AdminController extends BaseController {
             logsService.removeAll();
         } catch (Exception e) {
             log.error("Clear log failed:{}" + e.getMessage());
+        }
+        return "redirect:/admin";
+    }
+
+    /**
+     * 清除所有访问记录
+     *
+     * @return 重定向到/admin
+     */
+    @GetMapping(value = "/visits/clear")
+    public String visitsClear() {
+        try {
+            visitsService.removeAll();
+        } catch (Exception e) {
+            log.error("Clear visits failed:{}" + e.getMessage());
         }
         return "redirect:/admin";
     }

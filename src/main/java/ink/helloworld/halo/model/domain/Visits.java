@@ -47,6 +47,14 @@ public class Visits implements Serializable {
     private String visitUserAgent;
 
     /**
+     * 浏览器
+     */
+    private String visitBrowser;
+    /**
+     * 系统
+     */
+    private String visitOs;
+    /**
      * 产生的时间
      */
     @CreatedDate

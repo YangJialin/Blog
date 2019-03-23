@@ -92,6 +92,24 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!--在线统计-->
+                                <div class="form-group">
+                                    <label for="widgetOnlineCount" class="col-sm-4 control-label"><@spring.message code='admin.index.widgets.online-count' />：</label>
+                                    <div class="col-sm-8 control-radio">
+                                        <div class="pretty p-default p-round">
+                                            <input type="radio" name="widget_online_count" id="widgetOnlineCount" value="true" ${((options.widget_online_count!'true')=='true')?string('checked','')}>
+                                            <div class="state p-primary">
+                                                <label><@spring.message code='common.radio.display' /></label>
+                                            </div>
+                                        </div>
+                                        <div class="pretty p-default p-round">
+                                            <input type="radio" name="widget_online_count" id="widgetOnlineCount" value="false" ${((options.widget_online_count!'true')=='false')?string('checked','')}>
+                                            <div class="state p-primary">
+                                                <label><@spring.message code='common.radio.hide' /></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-sm-6 col-xs-6">
                                 <div class="form-group">
@@ -163,24 +181,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--在线统计-->
-                                <div class="form-group">
-                                    <label for="widgetOnlineCount" class="col-sm-4 control-label"><@spring.message code='admin.index.widgets.online-count' />：</label>
-                                    <div class="col-sm-8 control-radio">
-                                        <div class="pretty p-default p-round">
-                                            <input type="radio" name="widget_online_count" id="widgetOnlineCount" value="true" ${((options.widget_online_count!'true')=='true')?string('checked','')}>
-                                            <div class="state p-primary">
-                                                <label><@spring.message code='common.radio.display' /></label>
-                                            </div>
-                                        </div>
-                                        <div class="pretty p-default p-round">
-                                            <input type="radio" name="widget_online_count" id="widgetOnlineCount" value="false" ${((options.widget_online_count!'true')=='false')?string('checked','')}>
-                                            <div class="state p-primary">
-                                                <label><@spring.message code='common.radio.hide' /></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="box-footer">
@@ -228,7 +228,7 @@
             <!--在线统计-->
             <#if (options.widget_online_count!'true')=='true'>
             <div class="col-lg-3 col-xs-6" id="widgetOnlineCountBody">
-                <div class="small-box bg-red">
+                <div class="small-box bg-purple">
                     <div class="inner"><h3 id="blogStart">${onlineCount!}</h3><p><@spring.message code='admin.index.widgets.online' /></p></div>
                     <div class="icon"><i class="ion ion-pie-graph"></i></div>
                 </div>
@@ -426,14 +426,16 @@
                             <tbody>
                                 <tr>
                                     <th>IP</th>
-                                    <th><@spring.message code='common.th.user-agent' /></th>
+                                    <th><@spring.message code='common.th.visit-os' /></th>
+                                    <th><@spring.message code='common.th.visit-browser' /></th>
                                     <th><@spring.message code='common.th.date' /></th>
                                 </tr>
                                 <#if visits??>
                                 <#list visits as visit>
                                     <tr>
                                         <td>${visit.visitIp}</td>
-                                        <td>${visit.visitUserAgent!""}</td>
+                                        <td>${visit.visitOs!""}</td>
+                                        <td>${visit.visitBrowser!""}</td>
                                         <td>${visit.visitTime?string("yyyy-MM-dd HH:mm")}</td>
                                     </tr>
                                 </#list>
