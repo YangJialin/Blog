@@ -31,8 +31,8 @@ spring:
     #MariaDB配置
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/blog?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: 236135
+    username: blog
+    password:
 
 #  h2:
 #    console:
