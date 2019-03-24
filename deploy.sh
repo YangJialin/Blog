@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 指定Halo的根目录，请按实际修改
-HALO_DIR="/www/wwwroot/halo"
+HALO_DIR="/home/local/blog"
 
 # 拉取最新的源码
 # git pull
@@ -19,6 +19,6 @@ mvn package -Pprod
 cd $HALO_DIR/target/dist/halo
 
 # 运行Halo
-nohup java -server -jar `find ./ -name "halo*.jar"` > /dev/null 2>&1 &
+nohup java -server -jar `find ./ -name "halo*.jar"` > /home/local/blog/logs/log.log 2>&1 &
 
 echo "Halo部署完毕，Enjoy！"
